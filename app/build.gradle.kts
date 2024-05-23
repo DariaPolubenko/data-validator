@@ -3,6 +3,7 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent
 
 plugins {
     application
+    id("io.freefair.lombok") version "8.6"
     checkstyle
     jacoco
 }
@@ -19,8 +20,16 @@ repositories {
 }
 
 dependencies {
-    testImplementation(platform("org.junit:junit-bom:5.10.2"))
+    testImplementation(platform("org.junit:junit-bom:5.11.0-M1"))
     testImplementation("org.junit.jupiter:junit-jupiter")
+    testRuntimeOnly ("org.junit.jupiter:junit-jupiter-engine:5.8.0-M1")
+    testImplementation ("org.junit.jupiter:junit-jupiter-params:5.8.0-M1")
+    testImplementation ("org.assertj:assertj-core:3.19.0")
+
+    compileOnly("org.projectlombok:lombok:1.18.32")
+    annotationProcessor("org.projectlombok:lombok:1.18.32")
+    testCompileOnly("org.projectlombok:lombok:1.18.32")
+    testAnnotationProcessor("org.projectlombok:lombok:1.18.32")
 }
 
 tasks.test {
