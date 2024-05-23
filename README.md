@@ -3,4 +3,4 @@
 
 [![Test Coverage](https://api.codeclimate.com/v1/badges/2e9106abf701b80f8eb4/test_coverage)](https://codeclimate.com/github/DariaPolubenko/java-project-78/test_coverage)
 [![Maintainability](https://api.codeclimate.com/v1/badges/2e9106abf701b80f8eb4/maintainability)](https://codeclimate.com/github/DariaPolubenko/java-project-78/maintainability)
-[![Action Test](https://github.com/DariaPolubenko/java-project-71/actions/workflows/main.yml/badge.svg)](https://github.com/DariaPolubenko/java-project-78/actions)
+[![Action Test](https://github.com/DariaPolubenko/java-project-78/actions/workflows/main.yml/badge.svg)](https://github.com/DariaPolubenko/java-project-78/actions)
