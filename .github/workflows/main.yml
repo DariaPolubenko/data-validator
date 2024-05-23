@@ -18,5 +18,5 @@ jobs:
         with:
           gradle-version: 8.7
           
-      - run: cd app && ./gradlew build
+      - run: cd app && ./gradlew clean build
       
