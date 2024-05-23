@@ -3,6 +3,7 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent
 
 plugins {
     application
+    checkstyle
     jacoco
 }
 
@@ -18,7 +19,7 @@ repositories {
 }
 
 dependencies {
-    testImplementation(platform("org.junit:junit-bom:5.10.0"))
+    testImplementation(platform("org.junit:junit-bom:5.10.2"))
     testImplementation("org.junit.jupiter:junit-jupiter")
 }
 
@@ -26,8 +27,4 @@ tasks.test {
     useJUnitPlatform()
 }
 
-tasks.jacocoTestReport {
-    reports {
-        xml.required = true
-    }
-}
+tasks.jacocoTestReport { reports { xml.required.set(true) } }
