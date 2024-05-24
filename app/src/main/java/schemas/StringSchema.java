@@ -5,11 +5,12 @@ public class StringSchema {
     private int minLength;
     private String symbols;
 
-    public StringSchema() {}
+    public StringSchema() {
+    }
 
 
     public StringSchema required() {
-        notNull = true;
+        this.notNull = true;
         return this;
     }
 
@@ -17,13 +18,13 @@ public class StringSchema {
         if (count < 0) {
             throw new Exception("Длина не может быть меньше 0");
         } else {
-            minLength = count;
+            this.minLength = count;
         }
         return this;
     }
 
-    public StringSchema contains(String symbols) {
-        this.symbols = symbols;
+    public StringSchema contains(String characters) {
+        this.symbols = characters;
         return this;
     }
 
@@ -36,14 +37,14 @@ public class StringSchema {
         if (hasMinLength()) {
             if (text == null) {
                 return false;
-            } else if (text.length() < minLength) {
+            } else if (text.length() < this.minLength) {
                 return false;
             }
         }
         if (hasContains()) {
-           if (!text.contains(symbols)) {
-               return false;
-           }
+            if (!text.contains(this.symbols)) {
+                return false;
+            }
         }
         return true;
     }
