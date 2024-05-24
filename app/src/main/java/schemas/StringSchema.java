@@ -30,7 +30,7 @@ public class StringSchema {
 
     public boolean isValid(String text) throws Exception {
         if (isRequired()) {
-            if (text == null || text.isEmpty()) {
+            if (text == null || text.equals("")) {
                 return false;
             }
         }
