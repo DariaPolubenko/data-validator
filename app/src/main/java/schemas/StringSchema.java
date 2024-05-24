@@ -35,9 +35,7 @@ public class StringSchema {
             }
         }
         if (hasMinLength()) {
-            if (text == null) {
-                return false;
-            } else if (text.length() < this.minLength) {
+            if (text == null || text.length() < this.minLength) {
                 return false;
             }
         }
