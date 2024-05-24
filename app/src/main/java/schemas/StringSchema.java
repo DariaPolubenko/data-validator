@@ -1,85 +1,83 @@
 package schemas;
 
-import schemas.annotation.HasString;
-import schemas.annotation.MinLength;
-//import schemas.annotation.NotNull;
-
-import java.lang.annotation.*;
-
-//import java.lang.reflect.;
-import java.util.Arrays;
-import java.util.List;
-
-
 public class StringSchema {
     private boolean notNull;
-    private int length;
+    private int minLength;
+    private String symbols;
 
     public StringSchema() {}
+
 
     public StringSchema required() {
         notNull = true;
         return this;
     }
 
-    //@MinLength
     public StringSchema minLength(int count) throws Exception {
         if (count < 0) {
             throw new Exception("Длина не может быть меньше 0");
         } else {
-            length = count;
+            minLength = count;
         }
         return this;
     }
 
-    //@HasString
-    public StringSchema contains(String text) {
-        var str = text;
+    public StringSchema contains(String symbols) {
+        this.symbols = symbols;
         return this;
     }
 
     public boolean isValid(String text) throws Exception {
-
-        if (isNotValidRequired()) {
-            return false;
+        if (isRequired()) {
+            if (text == null || text.isEmpty()) {
+                return false;
+            }
         }
+        if (hasMinLength()) {
+            if (text == null) {
+                return false;
+            } else if (text.length() < minLength) {
+                return false;
+            }
+        }
+        if (hasContains()) {
+           if (!text.contains(symbols)) {
+               return false;
+           }
+        }
+        return true;
+    }
 
-        if (!hasMinLength(text)) {
+    public boolean isRequired() throws Exception {
+        var value = (boolean) getValue("notNull");
+        return value;
+    }
+
+    public boolean hasMinLength() throws Exception {
+        var value = (int) getValue("minLength");
+
+        if (value == 0) {
+            return false;
+        } else if (value < 0) {
+            throw new Exception("Длина не может быть отрицательная");
+        }
+        return true;
+    }
+
+    public boolean hasContains() throws Exception {
+        var value = getValue("symbols");
+        if (value == null) {
             return false;
         }
         return true;
-
-
-        //принимает строку, которую надо проверить
-    //вытаскиваем у объекта, какие есть у него аннотации
-    //если анотация есть, то слежующий метод проверки на условия
-
-        //новая теория: нужно обраться к полю методов с аннотациями
-        // и проверить, какое значения у этих полей. Если не null - то делаем проверки на тру/фолс
-        //если нулл - то не было инициализации
-
     }
 
-    public boolean isNotValidRequired() throws Exception {
-        var field = this.getClass().getDeclaredField("notNull");
+    public Object getValue(String fieldName) throws Exception {
+        var field = this.getClass().getDeclaredField(fieldName);
         field.setAccessible(true);
-        var value = (boolean) field.get(this);
+        var value = field.get(this);
         field.setAccessible(false);
 
         return value;
     }
-
-    public boolean hasMinLength(String text) throws Exception {
-        var field = this.getClass().getDeclaredField("length");
-        field.setAccessible(true);
-        var value = (int) field.get(this);
-        field.setAccessible(false);
-
-        if (text.length() < value) {
-            return false;
-        }
-
-        return true;
-    }
-
 }
