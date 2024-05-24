@@ -49,6 +49,12 @@ public class StringSchemaTest {
 
         var actual7 = schema.contains("whatthe").isValid("what does the fox say");
         assertThat(actual7).isEqualTo(false);
+
+
+        var schema1 = v.string();
+        var actual8 = schema1.minLength(10).minLength(4).isValid("Hexlet");
+        assertThat(actual8).isEqualTo(true);
+
     }
 
 }
