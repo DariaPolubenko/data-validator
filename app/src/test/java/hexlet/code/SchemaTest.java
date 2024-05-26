@@ -3,10 +3,9 @@ package hexlet.code;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class StringSchemaTest {
-
+public class SchemaTest {
     @Test
-    public void test1() throws Exception {
+    public void StringSchemaTest1() throws Exception {
         var v = new Validator();
         var schema = v.string();
 
@@ -21,7 +20,7 @@ public class StringSchemaTest {
     }
 
     @Test
-    public void test2() throws Exception {
+    public void StringSchemaTest2() throws Exception {
 
         var v = new Validator();
         var schema = v.string().required();
@@ -54,7 +53,51 @@ public class StringSchemaTest {
         var schema1 = v.string();
         var actual8 = schema1.minLength(10).minLength(4).isValid("Hexlet");
         assertThat(actual8).isEqualTo(true);
-
     }
 
+    @Test
+    public void NumberSchemaTest1() throws Exception {
+
+        var v = new Validator();
+        var schema = v.number();
+
+        var actual1 = schema.isValid(5);
+        assertThat(actual1).isEqualTo(true);
+
+        var actual2 = schema.isValid(null);
+        assertThat(actual2).isEqualTo(true);
+
+
+        schema.positive();
+        var actual3 = schema.isValid(null);
+        assertThat(actual3).isEqualTo(true);
+
+
+        schema.required();
+        var actual4 = schema.isValid(null);
+        assertThat(actual4).isEqualTo(false);
+
+        var actual5 = schema.isValid(10);
+        assertThat(actual5).isEqualTo(true);
+
+        var actual6 = schema.isValid(-10);
+        assertThat(actual6).isEqualTo(false);
+
+        var actual7 = schema.isValid(0);
+        assertThat(actual7).isEqualTo(false);
+
+
+        schema.range(5, 10);
+        var actual8 = schema.isValid(5);
+        assertThat(actual8).isEqualTo(true);
+
+        var actual9 = schema.isValid(10);
+        assertThat(actual9).isEqualTo(true);
+
+        var actual10 = schema.isValid(4);
+        assertThat(actual10).isEqualTo(false);
+
+        var actual11 = schema.isValid(11);
+        assertThat(actual11).isEqualTo(false);
+    }
 }
