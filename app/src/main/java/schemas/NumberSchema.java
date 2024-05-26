@@ -1,6 +1,6 @@
 package schemas;
 
-public class NumberSchema extends Schema {
+public class NumberSchema extends BaseSchema {
     private boolean notNull;
     private boolean notNegative;
     private Integer start;
