@@ -1,12 +1,9 @@
 package schemas;
 
-public class StringSchema {
+public class StringSchema extends Schema {
     private boolean notNull;
     private int minLength;
     private String symbols;
-
-    public StringSchema() {
-    }
 
 
     public StringSchema required() {
@@ -28,7 +25,9 @@ public class StringSchema {
         return this;
     }
 
-    public boolean isValid(String text) throws Exception {
+    public boolean isValid(Object object) throws Exception {
+        var text = (String) object;
+
         if (isRequired()) {
             if (text == null || text.equals("")) {
                 return false;
@@ -47,14 +46,8 @@ public class StringSchema {
         return true;
     }
 
-    public boolean isRequired() throws Exception {
-        var value = (boolean) getValue("notNull");
-        return value;
-    }
-
     public boolean hasMinLength() throws Exception {
         var value = (int) getValue("minLength");
-
         if (value == 0) {
             return false;
         } else if (value < 0) {
@@ -71,12 +64,4 @@ public class StringSchema {
         return true;
     }
 
-    public Object getValue(String fieldName) throws Exception {
-        var field = this.getClass().getDeclaredField(fieldName);
-        field.setAccessible(true);
-        var value = field.get(this);
-        field.setAccessible(false);
-
-        return value;
-    }
 }
