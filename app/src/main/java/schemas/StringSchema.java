@@ -1,6 +1,6 @@
 package schemas;
 
-public class StringSchema extends Schema {
+public class StringSchema extends BaseSchema {
     private boolean notNull;
     private int minLength;
     private String symbols;
