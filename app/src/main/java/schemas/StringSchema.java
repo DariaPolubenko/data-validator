@@ -2,16 +2,15 @@ package schemas;
 
 public class StringSchema extends BaseSchema {
     private boolean notNull;
-    private int minLength;
+    private Integer minLength;
     private String symbols;
-
 
     public StringSchema required() {
         this.notNull = true;
         return this;
     }
 
-    public StringSchema minLength(int count) throws Exception {
+    public StringSchema minLength(Integer count) throws Exception {
         if (count < 0) {
             throw new Exception("Длина не может быть меньше 0");
         } else {
@@ -47,8 +46,8 @@ public class StringSchema extends BaseSchema {
     }
 
     public boolean hasMinLength() throws Exception {
-        var value = (int) getValue("minLength");
-        if (value == 0) {
+        var value = (Integer) getValue("minLength");
+        if (value == null) {
             return false;
         } else if (value < 0) {
             throw new Exception("Длина не может быть отрицательная");
