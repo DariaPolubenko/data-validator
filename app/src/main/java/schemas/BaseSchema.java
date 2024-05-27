@@ -1,6 +1,7 @@
 package schemas;
 
 public abstract class BaseSchema<T>  {
+
     public boolean isRequired() throws Exception {
         var value = (boolean) getValue("notNull");
         return value;
