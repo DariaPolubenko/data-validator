@@ -1,6 +1,7 @@
 package hexlet.code;
 
 import lombok.NoArgsConstructor;
+import schemas.MapSchema;
 import schemas.NumberSchema;
 import schemas.StringSchema;
 
@@ -14,6 +15,11 @@ public class Validator {
 
     public NumberSchema number() {
         var schema = new NumberSchema();
+        return schema;
+    }
+
+    public MapSchema map() {
+        var schema = new MapSchema();
         return schema;
     }
 
