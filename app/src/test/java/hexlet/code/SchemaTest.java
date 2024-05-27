@@ -1,6 +1,9 @@
 package hexlet.code;
 
 import org.junit.jupiter.api.Test;
+
+import java.util.HashMap;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class SchemaTest {
@@ -56,7 +59,7 @@ public class SchemaTest {
     }
 
     @Test
-    public void NumberSchemaTest1() throws Exception {
+    public void NumberSchemaTest() throws Exception {
 
         var v = new Validator();
         var schema = v.number();
@@ -100,4 +103,37 @@ public class SchemaTest {
         var actual11 = schema.isValid(11);
         assertThat(actual11).isEqualTo(false);
     }
+
+    @Test
+    public void MapSchemaTest() throws Exception {
+        var v = new Validator();
+        var schema = v.map();
+
+        var actual1 = schema.isValid(null);
+        assertThat(actual1).isEqualTo(true);
+
+
+        schema.required();
+        var actual2 = schema.isValid(null);
+        assertThat(actual2).isEqualTo(false);
+
+        var actual3 = schema.isValid(new HashMap<>());
+        assertThat(actual3).isEqualTo(true);
+
+
+        var data = new HashMap<String, String>();
+        data.put("key1", "value1");
+        var actual4 = schema.isValid(data);
+        assertThat(actual4).isEqualTo(true);
+
+
+        schema.sizeof(2);
+
+        var actual5 = schema.isValid(data);
+        assertThat(actual5).isEqualTo(false);
+
+        data.put("key2", "value2");
+        var actual6 = schema.isValid(data);
+        assertThat(actual6).isEqualTo(true);
+        }
 }
