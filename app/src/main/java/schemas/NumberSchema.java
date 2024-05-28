@@ -1,62 +1,43 @@
 package schemas;
 
-public class NumberSchema extends BaseSchema {
-    private boolean notNull;
-    private boolean notNegative;
-    private Integer start;
-    private Integer end;
+import java.util.function.Predicate;
 
-    public NumberSchema required() {
-        this.notNull = true;
-        return this;
-    }
+public class NumberSchema extends BaseSchema<Integer> {
 
     public NumberSchema positive() {
-        this.notNegative = true;
-        return this;
-    }
-
-    public NumberSchema range(int start, int end) {
-        this.start = start;
-        this.end = end;
-        return this;
-    }
-
-    public boolean isValid(Object object) throws Exception {
-        var number = (Integer) object;
-
-        if (isRequired()) {
-            if (number == null) {
-                return false;
-            }
-        }
-        if (isPositive()) {
-            if (number != null) {
-                if (number <= 0) {
+        Predicate<Integer> fn = value -> {
+            if (value != null) {
+                if (value <= 0) {
                     return false;
                 }
             }
-        }
-        if (hasRange()) {
-            if (number != null) {
-                if (number < start || number > end) {
+            return true;
+        };
+        addCheck("positive", fn);
+        return this;
+    }
+
+    public NumberSchema range(Integer start, Integer end) {
+        Predicate<Integer> fn = value -> {
+            if (value != null) {
+                if (value < start || value > end) {
                     return false;
                 }
             }
-        }
-        return true;
+            return true;
+        };
+        addCheck("range", fn);
+        return this;
     }
 
-    public boolean isPositive() throws Exception  {
-        var value = (boolean) getValue("notNegative");
-        return value;
+    public NumberSchema minLength(int length) {
+        return this;
     }
 
-    public boolean hasRange() throws Exception {
-        var value = (Integer) getValue("start");
-        if (value == null) {
-            return false;
-        }
-        return true;
+    public NumberSchema contains(String characters) {
+        return this;
     }
+
+
 }
+
