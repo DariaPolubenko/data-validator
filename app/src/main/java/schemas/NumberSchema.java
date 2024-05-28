@@ -37,7 +37,5 @@ public class NumberSchema extends BaseSchema<Integer> {
     public NumberSchema contains(String characters) {
         return this;
     }
-
-
 }
 
