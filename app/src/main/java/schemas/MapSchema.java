@@ -25,6 +25,5 @@ public class MapSchema extends BaseSchema<Map<String, String>> {
     public MapSchema contains(String characters) {
         return this;
     }
-
 }
 
