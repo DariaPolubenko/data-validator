@@ -1,11 +1,19 @@
 package hexlet.code;
 
-
-import java.util.HashMap;
-
 public class App {
     public static void main(String[] args) throws Exception {
 
+        var v = new Validator();
+        var schema = v.string();
+
+        schema.required();
+        //schema.minLength(2);
+        //schema.contains("lo");
+
+        System.out.println(schema.isValid("")); //false
+        System.out.println(schema.isValid(null)); //false
+
+        /*
         var v = new Validator();
         var schema = v.number();
 
@@ -19,5 +27,7 @@ public class App {
         data.put("key1", "value1");
 
         schema1.isValid(data);
+
+         */
     }
 }
