@@ -4,6 +4,17 @@ import java.util.function.Predicate;
 
 public class NumberSchema extends BaseSchema<Integer> {
 
+    public NumberSchema required() {
+        Predicate<Integer> fn = value -> {
+            if (value == null) {
+                return false;
+            }
+            return true;
+        };
+        addCheck("required", fn);
+        return this;
+    }
+
     public NumberSchema positive() {
         Predicate<Integer> fn = value -> {
             if (value != null) {
@@ -27,15 +38,7 @@ public class NumberSchema extends BaseSchema<Integer> {
             return true;
         };
         addCheck("range", fn);
-        return this;
-    }
-
-    public NumberSchema minLength(int length) {
-        return this;
-    }
-
-    public NumberSchema contains(String characters) {
+        isNotNull = true;
         return this;
     }
 }
-
