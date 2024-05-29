@@ -165,7 +165,7 @@ public class SchemaTest {
     }
 
     @Test
-    public void MapShapeTest() {
+    public void mapShapeTest() {
         var v = new Validator();
 
         var schema = v.map();
