@@ -3,10 +3,10 @@ package schemas;
 import java.util.Map;
 import java.util.function.Predicate;
 
-public class MapSchema extends BaseSchema<Map<String, String>> {
+public class MapSchema<M, L> extends BaseSchema<Map<M, L>> {
 
     public MapSchema required() {
-        Predicate<Map<String, String>> fn = value -> {
+        Predicate<Map<M, L>> fn = value -> {
             if (value == null) {
                 return false;
             }
@@ -17,7 +17,7 @@ public class MapSchema extends BaseSchema<Map<String, String>> {
     }
 
     public MapSchema sizeof(Integer minSize) {
-        Predicate<Map<String, String>> fn = value -> {
+        Predicate<Map<M, L>> fn = value -> {
             if (!value.isEmpty()) {
                 if (value.size() != minSize) {
                     return false;
@@ -30,8 +30,8 @@ public class MapSchema extends BaseSchema<Map<String, String>> {
         return this;
     }
 
-    public MapSchema shape(Map<String, BaseSchema<String>> object) {
-        Predicate<Map<String, String>> fn = value ->
+    public MapSchema shape(Map<M, BaseSchema<L>> object) {
+        Predicate<Map<M, L>> fn = value ->
                 object.keySet().stream().allMatch(key -> object.get(key).isValid(data.get(key)));
         addCheck("shape", fn);
         return this;
