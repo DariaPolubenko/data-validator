@@ -1,8 +1,11 @@
 package hexlet.code;
 
+import schemas.BaseSchema;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
-import java.util.HashMap;
 
 public class SchemaTest {
     @Test
@@ -159,6 +162,42 @@ public class SchemaTest {
         var schema1 = v.map().sizeof(1);
         var actual7 = schema1.isValid(null);
         assertThat(actual7).isEqualTo(false);
+    }
+
+    @Test
+    public void MapShapeTest() {
+        var v = new Validator();
+
+        var schema = v.map();
+
+        Map<String, BaseSchema<String>> schemas = new HashMap<>();
+        schemas.put("firstName", v.string().required());
+        schemas.put("lastName", v.string().required().minLength(2));
+
+        schema.shape(schemas);
+
+        Map<String, String> human1 = new HashMap<>();
+        human1.put("firstName", "John");
+        human1.put("lastName", "Smith");
+
+        var actual1 = schema.isValid(human1);
+        assertThat(actual1).isEqualTo(true);
+
+
+        Map<String, String> human2 = new HashMap<>();
+        human2.put("firstName", "John");
+        human2.put("lastName", null);
+
+        var actual2 = schema.isValid(human2);
+        assertThat(actual2).isEqualTo(false);
+
+
+        Map<String, String> human3 = new HashMap<>();
+        human3.put("firstName", "Anna");
+        human3.put("lastName", "B");
+
+        var actual3 = schema.isValid(human3);
+        assertThat(actual3).isEqualTo(false);
     }
 }
 
