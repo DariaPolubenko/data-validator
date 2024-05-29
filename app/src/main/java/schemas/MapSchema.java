@@ -29,4 +29,11 @@ public class MapSchema extends BaseSchema<Map<String, String>> {
         isNotNull = true;
         return this;
     }
+
+    public MapSchema shape(Map<String, BaseSchema<String>> object) {
+        Predicate<Map<String, String>> fn = value ->
+                object.keySet().stream().allMatch(key -> object.get(key).isValid(data.get(key)));
+        addCheck("shape", fn);
+        return this;
+    }
 }
