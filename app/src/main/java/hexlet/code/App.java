@@ -1,37 +1,31 @@
 package hexlet.code;
 
 
+import schemas.BaseSchema;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class App {
     public static void main(String[] args) throws Exception {
 
+
         var v = new Validator();
-        var schema = v.string();
+        var schema = v.map();
 
-        //schema.required();
-        schema.minLength(2);
-        //schema.contains("lo");
+        Map<String, BaseSchema<String>> schemas = new HashMap<>();
+        schemas.put("firstName", v.string().required());
+        schemas.put("lastName", v.string().required().minLength(2));
 
-        //System.out.println(schema.isValid("")); //false
-        //System.out.println(schema.isValid(null)); //false
+        schema.shape(schemas);
 
+        Map<String, String> human2 = new HashMap<>();
+        human2.put("firstName", "John");
+        human2.put("lastName", null);
 
-        var v1 = new Validator();
-        var schema1 = v1.number();
+        System.out.println(schema.isValid(human2));
 
-        System.out.println(schema1.isValid(5)); //true
-
-        //schema1.positive();
-        schema1.range(1, 3);
-        System.out.println(schema1.isValid(null)); //false
-/*
-        var v2 = new Validator();
-        var schema2 = v2.map();
-
-        var data = new HashMap<String, String>();
-        data.put("key1", "value1");
-
-        schema2.isValid(data);
-
-         */
+        System.out.println(v.string().required().isValid("John"));
+        System.out.println(v.string().required().minLength(2).isValid(null));
     }
 }
