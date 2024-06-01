@@ -1,5 +1,7 @@
 package schemas;
 
+import hexlet.code.BaseSchema;
+
 import java.util.function.Predicate;
 
 public class NumberSchema extends BaseSchema<Integer> {
