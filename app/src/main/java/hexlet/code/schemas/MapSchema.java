@@ -16,7 +16,7 @@ public final class MapSchema extends BaseSchema<Map<?, ?>> {
 
     public MapSchema sizeof(Integer minSize) {
         addCheck("sizeof", value -> {
-            if (!value.isEmpty()) {
+            if (value != null) {
                 if (value.size() != minSize) {
                     return false;
                 }
