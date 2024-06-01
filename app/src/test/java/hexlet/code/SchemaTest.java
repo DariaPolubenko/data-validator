@@ -68,8 +68,10 @@ public class SchemaTest {
         var actual10 = schema1.isValid("hex");
         assertThat(actual10).isEqualTo(false);
 
-        //var actual11 = schema1.isValid(null);
-        //assertThat(actual11).isEqualTo(false);
+        /*
+        var actual11 = schema1.isValid(null);
+        assertThat(actual11).isEqualTo(false);
+         */
     }
 
     @Test
