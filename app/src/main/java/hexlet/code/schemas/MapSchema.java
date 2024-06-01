@@ -1,7 +1,6 @@
 package hexlet.code.schemas;
 
 import java.util.Map;
-import java.util.function.Predicate;
 
 public final class MapSchema extends BaseSchema<Map<?, ?>> {
 
