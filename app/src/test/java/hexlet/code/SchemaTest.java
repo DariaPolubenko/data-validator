@@ -1,6 +1,5 @@
 package hexlet.code;
 
-import schemas.BaseSchema;
 import java.util.HashMap;
 import java.util.Map;
 
