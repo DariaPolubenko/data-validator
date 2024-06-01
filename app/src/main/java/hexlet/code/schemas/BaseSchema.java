@@ -2,24 +2,23 @@ package hexlet.code.schemas;
 
 import java.util.Map;
 import java.util.LinkedHashMap;
+import java.util.Objects;
 import java.util.function.Predicate;
 
 public class BaseSchema<T>  {
     protected Map<String, Predicate<T>> checks = new LinkedHashMap<>();
     protected boolean isNotNull;
-    protected T data;
 
     protected void addCheck(String name, Predicate<T> validate) {
         checks.put(name, validate);
     }
 
-    public boolean isValid(T object) {
-        if (object == null & isNotNull) {
+    public boolean isValid(T value) {
+        if (value == null & isNotNull) {
             return false;
         }
-        data = object;
         return checks.values().stream()
-                    .allMatch(fn -> fn.test(object));
+                    .allMatch(fn -> fn.test(value));
     }
 }
 /*
@@ -34,9 +33,7 @@ public class BaseSchema<T>  {
         Как грустно, когда не приходишь к верному варианту с первого раза! :D
         А так хотелось!
 
-        5 шаг (метод shape), реализован мной как-то кривова-то>
-        Не обошлась без еще одной доп. переменной ("data") в родительском классе.
-        Однако, если бы не подсказки в чате - думаю, что не реализовала бы вообще 5ый шаг.
+        Также, если бы не подсказки в чате - думаю, что не реализовала бы 5ый шаг.
         Чувствую, что еще плаваю в абстрактном программировании.
      </Минутка нытья закончилась>
 
