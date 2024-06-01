@@ -1,10 +1,10 @@
 package hexlet.code;
 
 import lombok.NoArgsConstructor;
-//import schemas.MapSchema;
 import schemas.NumberSchema;
 import schemas.StringSchema;
 import schemas.MapSchema;
+
 
 @NoArgsConstructor
 public class Validator {
