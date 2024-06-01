@@ -1,9 +1,9 @@
 package hexlet.code;
 
 import lombok.NoArgsConstructor;
-import schemas.NumberSchema;
-import schemas.StringSchema;
-import schemas.MapSchema;
+import hexlet.code.schemas.NumberSchema;
+import hexlet.code.schemas.StringSchema;
+import hexlet.code.schemas.MapSchema;
 
 
 @NoArgsConstructor
