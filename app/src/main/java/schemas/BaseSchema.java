@@ -10,7 +10,7 @@ public class BaseSchema<T>  {
     protected boolean isNotNull;
     protected T data;
 
-    protected void addCheck(String name, Predicate<T> validate) {gi
+    protected void addCheck(String name, Predicate<T> validate) {
         checks.put(name, validate);
     }
 
