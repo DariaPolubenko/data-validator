@@ -1,7 +1,5 @@
 package schemas;
 
-import hexlet.code.BaseSchema;
-
 import java.util.Map;
 import java.util.function.Predicate;
 
