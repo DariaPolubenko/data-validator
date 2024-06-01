@@ -1,8 +1,7 @@
-package schemas;
+package hexlet.code;
 
 import java.util.Map;
 import java.util.LinkedHashMap;
-
 import java.util.function.Predicate;
 
 public class BaseSchema<T>  {
