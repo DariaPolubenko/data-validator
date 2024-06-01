@@ -54,7 +54,7 @@ public class SchemaTest {
         var actual6 = schema.contains("what").isValid("what does the fox say");
         assertThat(actual6).isEqualTo(true);
 
-        var actual7 = schema.contains("whatthe").isValid("what does the fox say");
+        var actual7 = schema.contains("what").contains("whatthe").isValid("what does the fox say");
         assertThat(actual7).isEqualTo(false);
 
         var actual8 = schema.isValid("what does the fox say");
@@ -68,10 +68,8 @@ public class SchemaTest {
         var actual10 = schema1.isValid("hex");
         assertThat(actual10).isEqualTo(false);
 
-        /*
-        var actual11 = schema1.isValid(null);
-        assertThat(actual11).isEqualTo(false);
-         */
+        //var actual11 = schema1.isValid(null);
+        //assertThat(actual11).isEqualTo(false);
     }
 
     @Test
