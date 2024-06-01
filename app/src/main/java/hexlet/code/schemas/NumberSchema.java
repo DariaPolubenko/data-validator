@@ -38,7 +38,7 @@ public class NumberSchema extends BaseSchema<Integer> {
             return true;
         };
         addCheck("range", fn);
-        isNotNull = true;
+        //isNotNull = true;
         return this;
     }
 }
