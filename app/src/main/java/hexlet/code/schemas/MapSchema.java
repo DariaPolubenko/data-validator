@@ -32,7 +32,7 @@ public class MapSchema<K, V> extends BaseSchema<Map<K, V>> {
 
     public MapSchema shape(Map<K, BaseSchema<V>> object) {
         Predicate<Map<K, V>> fn = value ->
-                object.keySet().stream().allMatch(key -> object.get(key).isValid(data.get(key)));
+                object.keySet().stream().allMatch(key -> object.get(key).isValid(value.get(key)));
         addCheck("shape", fn);
         return this;
     }
