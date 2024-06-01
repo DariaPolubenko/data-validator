@@ -13,11 +13,12 @@ public class StringSchema extends BaseSchema<String> {
             return true;
         };
         addCheck("required", fn);
+        isNotNull = true;
         return this;
     }
 
     public StringSchema minLength(int length) {
-        addCheck("minLength", value -> value.length() >= length && length >= 0);
+        addCheck("minLength", value -> value.length() >= length);
         isNotNull = true;
         return this;
     }
