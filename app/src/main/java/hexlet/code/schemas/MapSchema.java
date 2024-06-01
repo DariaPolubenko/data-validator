@@ -3,10 +3,10 @@ package hexlet.code.schemas;
 import java.util.Map;
 import java.util.function.Predicate;
 
-public final class MapSchema extends BaseSchema<Map<?, ?>> {
+public final class MapSchema extends BaseSchema<Map<?, String>> {
 
     public MapSchema required() {
-        Predicate<Map<?, ?>> fn = value -> {
+        Predicate<Map<?, String>> fn = value -> {
             if (value == null) {
                 return false;
             }
@@ -17,7 +17,7 @@ public final class MapSchema extends BaseSchema<Map<?, ?>> {
     }
 
     public MapSchema sizeof(Integer minSize) {
-        Predicate<Map<?, ?>> fn = value -> {
+        Predicate<Map<?, String>> fn = value -> {
             if (!value.isEmpty()) {
                 if (value.size() != minSize) {
                     return false;
@@ -30,8 +30,8 @@ public final class MapSchema extends BaseSchema<Map<?, ?>> {
         return this;
     }
 
-    public MapSchema shape(Map<?, BaseSchema<?>> object) {
-        Predicate<Map<?, ?>> fn = value ->
+    public MapSchema shape(Map<?, BaseSchema<String>> object) {
+        Predicate<Map<?, String>> fn = value ->
                 object.keySet().stream().allMatch(key -> object.get(key).isValid(value.get(key)));
         addCheck("shape", fn);
         return this;
