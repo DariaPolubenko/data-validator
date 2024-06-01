@@ -53,7 +53,7 @@ var v = new Validator();
 var schema = v.v.string().required().minLength(5).contains("hex");
 ```
 ```bash
-Отправьте схему и данные на проверку ипользуя метод isValid:
+Отправьте схему и данные на проверку, ипользуя метод isValid:
 schema.isValid("hexlet"); // true
 ```
 
