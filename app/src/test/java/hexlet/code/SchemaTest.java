@@ -200,5 +200,63 @@ public class SchemaTest {
         var actual3 = schema.isValid(human3);
         assertThat(actual3).isEqualTo(false);
     }
+
+    @Test
+    public void testStringValidator() {
+        var v = new Validator();
+        var schema = v.string();
+
+        assertThat(schema.isValid("")).isTrue();
+
+        schema.required();
+        assertThat(schema.isValid("what does the fox say")).isTrue();
+        assertThat(schema.isValid("hexlet")).isTrue();
+        assertThat(schema.isValid("")).isFalse();
+        assertThat(schema.isValid(null)).isFalse();
+
+        schema.minLength(7);
+        assertThat(schema.isValid("what does the fox say")).isTrue();
+        assertThat(schema.isValid("hexlet")).isFalse();
+
+        assertThat(
+                schema.contains("what").isValid("what does the fox say")
+        ).isTrue();
+
+        assertThat(
+                schema.contains("whatthe").isValid("what does the fox say")
+        ).isFalse();
+
+        var schema1 = v.string().required().minLength(10).minLength(4);
+        assertThat(schema1.isValid("hexlet")).isTrue();
+    }
+
+
+    @Test
+    public void testNumberValidator() {
+        var v = new Validator();
+        var schema = v.number();
+
+        assertThat(schema.isValid(5)).isTrue();
+        assertThat(schema.isValid(null)).isTrue();
+
+        schema.positive();
+        assertThat(schema.isValid(null)).isTrue();
+
+        schema.required();
+        assertThat(schema.isValid(null)).isFalse();
+        assertThat(schema.isValid(-10)).isFalse();
+        assertThat(schema.isValid(0)).isFalse();
+        assertThat(schema.isValid(10)).isTrue();
+
+        schema.range(5, 10);
+        assertThat(schema.isValid(5)).isTrue();
+        assertThat(schema.isValid(10)).isTrue();
+        assertThat(schema.isValid(4)).isFalse();
+        assertThat(schema.isValid(11)).isFalse();
+
+        schema.range(6, 9);
+        assertThat(schema.isValid(5)).isFalse();
+        assertThat(schema.isValid(10)).isFalse();
+    }
 }
 
