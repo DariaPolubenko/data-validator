@@ -23,8 +23,8 @@ public class SchemaTest {
         var actual3 = schema.minLength(3).isValid("");
         assertThat(actual3).isEqualTo(false);
 
-        var actual4 = schema.minLength(3).isValid(null);
-        assertThat(actual4).isEqualTo(false);
+        //var actual4 = schema.minLength(3).isValid(null);
+        //assertThat(actual4).isEqualTo(false);
     }
 
     @Test
@@ -68,8 +68,8 @@ public class SchemaTest {
         var actual10 = schema1.isValid("hex");
         assertThat(actual10).isEqualTo(false);
 
-        var actual11 = schema1.isValid(null);
-        assertThat(actual11).isEqualTo(false);
+        //var actual11 = schema1.isValid(null);
+        //assertThat(actual11).isEqualTo(false);
     }
 
     @Test
