@@ -19,13 +19,13 @@ public class StringSchema extends BaseSchema<String> {
 
     public StringSchema minLength(int length) {
         addCheck("minLength", value -> value.length() >= length);
-        isNotNull = true;
+        //isNotNull = true;
         return this;
     }
 
     public StringSchema contains(String characters) {
         addCheck("contains", value -> value.contains(characters));
-        isNotNull = true;
+        //isNotNull = true;
         return this;
     }
 }
