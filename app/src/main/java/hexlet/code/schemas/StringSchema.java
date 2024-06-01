@@ -17,7 +17,7 @@ public class StringSchema extends BaseSchema<String> {
     }
 
     public StringSchema minLength(int length) {
-        addCheck("minLength", value -> value.length() >= length);
+        addCheck("minLength", value -> value.length() >= length && length >= 0);
         isNotNull = true;
         return this;
     }
