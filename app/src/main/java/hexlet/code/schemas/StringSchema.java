@@ -13,19 +13,16 @@ public final class StringSchema extends BaseSchema<String> {
             return true;
         };
         addCheck("required", fn);
-        isNotNull = true;
         return this;
     }
 
     public StringSchema minLength(int length) {
         addCheck("minLength", value -> value.length() >= length);
-        //isNotNull = true;
         return this;
     }
 
     public StringSchema contains(String characters) {
         addCheck("contains", value -> value.contains(characters));
-        //isNotNull = true;
         return this;
     }
 }

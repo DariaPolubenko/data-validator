@@ -23,7 +23,6 @@ public final class MapSchema extends BaseSchema<Map<?, ?>> {
             }
             return true;
         });
-        isNotNull = true;
         return this;
     }
 
