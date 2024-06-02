@@ -53,7 +53,7 @@ var schema = v.v.string().required().minLength(5).contains("hex");
 schema.isValid("hexlet"); // true
 ```
 
-Пример проверки вложенных данных:
+## Пример валидации вложенных данных:
 ```bash
 var v = new Validator();
 var schema = v.map();
