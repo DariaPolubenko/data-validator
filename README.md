@@ -44,7 +44,7 @@ git clone git@github.com:DariaPolubenko/java-project-78.git
 ```bash
 var v = new Validator();
 ```
-Укажите тип проверяемых данных и составьте схему для проверки
+Укажите тип проверяемых данных и составьте схему валидации
 ```bash
 var schema = v.v.string().required().minLength(5).contains("hex");
 ```
