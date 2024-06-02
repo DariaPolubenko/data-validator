@@ -7,7 +7,7 @@ import hexlet.code.schemas.MapSchema;
 
 
 @NoArgsConstructor
-public class Validator {
+public final class Validator {
 
     public StringSchema string() {
         var schema = new StringSchema();
