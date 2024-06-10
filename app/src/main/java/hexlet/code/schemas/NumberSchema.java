@@ -17,10 +17,8 @@ public final class NumberSchema extends BaseSchema<Integer> {
 
     public NumberSchema positive() {
         Predicate<Integer> fn = value -> {
-            if (value != null) {
-                if (value <= 0) {
-                    return false;
-                }
+            if ((value != null) && (value <= 0)) {
+                return false;
             }
             return true;
         };
@@ -30,10 +28,8 @@ public final class NumberSchema extends BaseSchema<Integer> {
 
     public NumberSchema range(Integer start, Integer end) {
         Predicate<Integer> fn = value -> {
-            if (value != null) {
-                if (value < start || value > end) {
-                    return false;
-                }
+            if ((value != null) && (value < start || value > end)) {
+                return false;
             }
             return true;
         };

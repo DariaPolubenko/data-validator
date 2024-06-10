@@ -1,12 +1,9 @@
 package hexlet.code;
 
-import lombok.NoArgsConstructor;
 import hexlet.code.schemas.NumberSchema;
 import hexlet.code.schemas.StringSchema;
 import hexlet.code.schemas.MapSchema;
 
-
-@NoArgsConstructor
 public final class Validator {
 
     public StringSchema string() {
