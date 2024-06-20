@@ -35,7 +35,7 @@
 ## Установка
 В консоль введите команду:
 ```bash
-git clone git@github.com:DariaPolubenko/java-project-78.git
+git clone git@github.com:DariaPolubenko/DataValidator.git
 ```
 
 
