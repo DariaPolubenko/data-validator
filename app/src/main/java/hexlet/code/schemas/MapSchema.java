@@ -14,10 +14,10 @@ public final class MapSchema extends BaseSchema<Map<?, ?>> {
         return this;
     }
 
-    public MapSchema sizeof(Integer minSize) {
+    public MapSchema sizeof(Integer size) {
         addCheck("sizeof", value -> {
             if (value != null) {
-                if (value.size() != minSize) {
+                if (value.size() != size) {
                     return false;
                 }
             }
