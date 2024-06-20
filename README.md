@@ -15,8 +15,8 @@
 ## Подключение библиотеки
 В консоль введите команду:
 ```bash
-git clone git@github.com:DariaPolubenko/DataValidator.git
-cd DataValidator
+git clone git@github.com:DariaPolubenko/data-validator.git
+cd data-validator
 ```
 Затем введите следующую команду, чтобы создать JAR-файл:
 ```bash
