@@ -11,6 +11,9 @@
 Пользователь имеет возможность настраивать необходимую схему валидации самостоятельно.
 
 
+### Технологический стек:
+_Java, Gradle, IntelliJ IDEA, JUnit, Checkstyle, Make, Git, GitHub Actions (CI), Code Climate, Jacoco_
+
 ## Подключение библиотеки
 В консоль введите команду:
 ```bash
